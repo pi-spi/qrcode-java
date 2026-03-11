@@ -1,0 +1,71 @@
+package bceao.pispi.qrcode;
+
+import java.util.Collections;
+import java.util.Map;
+import java.util.TreeMap;
+
+/**
+ * Surcharges des données additionnelles (template 62).
+ * Données libres : clés doivent être des chaînes de 2 caractères alphanumériques (spécification EMV).
+ */
+public final class AdditionalDataOverrides {
+
+    private final String merchantChannel;
+    private final String purposeOfTransaction;
+    private final Map<String, String> custom;
+
+    private AdditionalDataOverrides(Builder b) {
+        this.merchantChannel = b.merchantChannel;
+        this.purposeOfTransaction = b.purposeOfTransaction;
+        this.custom = b.custom == null ? Map.of() : Collections.unmodifiableMap(new TreeMap<>(b.custom));
+    }
+
+    public String merchantChannel() {
+        return merchantChannel;
+    }
+
+    public String purposeOfTransaction() {
+        return purposeOfTransaction;
+    }
+
+    public Map<String, String> custom() {
+        return custom;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static final class Builder {
+        private String merchantChannel;
+        private String purposeOfTransaction;
+        private Map<String, String> custom;
+
+        public Builder merchantChannel(String merchantChannel) {
+            this.merchantChannel = merchantChannel;
+            return this;
+        }
+
+        public Builder purposeOfTransaction(String purposeOfTransaction) {
+            this.purposeOfTransaction = purposeOfTransaction;
+            return this;
+        }
+
+        public Builder custom(Map<String, String> custom) {
+            this.custom = custom;
+            return this;
+        }
+
+        public Builder putCustom(String tag, String value) {
+            if (this.custom == null) {
+                this.custom = new TreeMap<>();
+            }
+            this.custom.put(tag, value);
+            return this;
+        }
+
+        public AdditionalDataOverrides build() {
+            return new AdditionalDataOverrides(this);
+        }
+    }
+}
