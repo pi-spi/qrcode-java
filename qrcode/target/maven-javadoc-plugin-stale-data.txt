@@ -1,0 +1,41 @@
+@options
+@packages
+-encoding
+'UTF-8'
+-protected
+-source
+'21'
+-sourcepath
+'/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/src/main/java:/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2026. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/target/apidocs'
+-docencoding
+'UTF-8'
+-Xdoclint:none
+-doctitle
+'PI-SPI QR Code SDK 0.1.2 API'
+-use
+-version
+-windowtitle
+'PI-SPI QR Code SDK 0.1.2 API'
+bceao.pispi.qrcode
+/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/src/main/java = 1772147639038
+/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/target/generated-sources/annotations = 1772147683592
+/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/target/apidocs/tag-search-index.js = 1772147686240
+/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/target/apidocs/overview-tree.html = 1772147686229
+/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/target/apidocs/module-search-index.js = 1772147686239
+/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/target/apidocs/index.html = 1772147686249
+/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/target/apidocs/package-search-index.js = 1772147686240
+/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/target/apidocs/index-all.html = 1772147686248
+/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/target/apidocs/allpackages-index.html = 1772147686238
+/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/target/apidocs/member-search-index.js = 1772147686240
+/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/target/apidocs/help-doc.html = 1772147686250
+/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/target/apidocs/element-list = 1772147686190
+/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/target/apidocs/search.html = 1772147686249
+/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/target/apidocs/allclasses-index.html = 1772147686238
+/Users/romeoahoue/Documents/PROJET-PISFN/@SDK/qrcode-java/qrcode/target/apidocs/type-search-index.js = 1772147686240
