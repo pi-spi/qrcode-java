@@ -46,7 +46,7 @@ String payload = PispiQrCode.buildPayloadString(
 
 ## Exemples complets
 
-Des exemples de projets Maven et Gradle prêts à l'emploi sont disponibles dans le dépôt [qrcode-java-examples](https://github.com/pi-spi/qrcode-java-examples).
+Des exemples de projets Maven et Gradle prêts à l'emploi sont disponibles dans le dépôt [qrcode-samples/java](https://github.com/pi-spi/qrcode-samples/tree/main/java).
 
 ## API
 
