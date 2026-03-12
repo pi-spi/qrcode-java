@@ -96,7 +96,7 @@ Surcharges des données additionnelles (template 62). Construit via `AdditionalD
 | ---------------------- | -------------------- | ---------------------------------------------- |
 | `merchantChannel`      | `String`             | Canal marchand (tag 11)                        |
 | `purposeOfTransaction` | `String`             | Objet de la transaction                        |
-| `custom`               | `Map<String,String>` | Données libres ; clés = 2 caractères alphanum. |
+| `custom`               | `Map<String,String>` | Données libres ; clés autorisées : `05` (max 25 car.) et `11` (valeur `000` ou `400`). |
 
 
 ### `QrPayloadResult`
@@ -152,7 +152,8 @@ if (result.valid()) {
 ```java
 AdditionalDataOverrides overrides = AdditionalDataOverrides.builder()
     .purposeOfTransaction("FACTURE")
-    .putCustom("AA", "VALEUR1")
+    .putCustom("05", "REFERENCE_TX")   // max 25 caractères
+    .putCustom("11", "400")            // "000" ou "400"
     .build();
 QrPayloadOptions options = QrPayloadOptions.builder()
     .additionalData(overrides)

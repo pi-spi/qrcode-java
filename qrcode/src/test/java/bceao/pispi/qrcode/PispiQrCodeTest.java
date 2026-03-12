@@ -212,8 +212,8 @@ class PispiQrCodeTest {
         void autoriseLesDonneesAdditionnellesPersonnalisees() {
             AdditionalDataOverrides overrides = AdditionalDataOverrides.builder()
                     .purposeOfTransaction("FACTURE")
-                    .putCustom("AA", "VALEUR1")
-                    .putCustom("AB", "VALEUR2")
+                    .putCustom("05", "REFERENCE_TX_MAX_25_CHARS")
+                    .putCustom("11", "400")
                     .build();
             QrPayloadOptions options = QrPayloadOptions.builder().additionalData(overrides).build();
             QrPayloadResult result = PispiQrCode.createQrPayload(
@@ -222,8 +222,64 @@ class PispiQrCodeTest {
             Map<String, String> segments = decodeSegments(result.payload());
             Map<String, String> additional = decodeSegments(segments.get("62"));
             assertEquals("FACTURE", additional.get("12"));
-            assertEquals("VALEUR1", additional.get("AA"));
-            assertEquals("VALEUR2", additional.get("AB"));
+            assertEquals("REFERENCE_TX_MAX_25_CHARS", additional.get("05"));
+            assertEquals("400", additional.get("11"));
+        }
+
+        @Test
+        void rejetteUneCleCustomInvalide() {
+            AdditionalDataOverrides overrides = AdditionalDataOverrides.builder()
+                    .putCustom("AA", "VALEUR")
+                    .build();
+            QrPayloadOptions options = QrPayloadOptions.builder().additionalData(overrides).build();
+            IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
+                    PispiQrCode.createQrPayload(
+                            input(BASE_ALIAS, BASE_COUNTRY, QrType.STATIC, REFERENCE_CAISSE, null),
+                            options));
+            assertTrue(ex.getMessage().contains("05") && ex.getMessage().contains("11"));
+            assertTrue(ex.getMessage().contains("AA"));
+        }
+
+        @Test
+        void rejetteCustomTag05TropLong() {
+            AdditionalDataOverrides overrides = AdditionalDataOverrides.builder()
+                    .putCustom("05", "A".repeat(26))
+                    .build();
+            QrPayloadOptions options = QrPayloadOptions.builder().additionalData(overrides).build();
+            IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
+                    PispiQrCode.createQrPayload(
+                            input(BASE_ALIAS, BASE_COUNTRY, QrType.STATIC, REFERENCE_CAISSE, null),
+                            options));
+            assertTrue(ex.getMessage().contains("05"));
+            assertTrue(ex.getMessage().contains("25"));
+        }
+
+        @Test
+        void rejetteCustomTag11ValeurInvalide() {
+            AdditionalDataOverrides overrides = AdditionalDataOverrides.builder()
+                    .putCustom("11", "123")
+                    .build();
+            QrPayloadOptions options = QrPayloadOptions.builder().additionalData(overrides).build();
+            IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
+                    PispiQrCode.createQrPayload(
+                            input(BASE_ALIAS, BASE_COUNTRY, QrType.STATIC, REFERENCE_CAISSE, null),
+                            options));
+            assertTrue(ex.getMessage().contains("11"));
+            assertTrue(ex.getMessage().contains("000") && ex.getMessage().contains("400"));
+        }
+
+        @Test
+        void accepteCustomTag11_000() {
+            AdditionalDataOverrides overrides = AdditionalDataOverrides.builder()
+                    .putCustom("11", "000")
+                    .build();
+            QrPayloadOptions options = QrPayloadOptions.builder().additionalData(overrides).build();
+            QrPayloadResult result = PispiQrCode.createQrPayload(
+                    input(BASE_ALIAS, BASE_COUNTRY, QrType.STATIC, REFERENCE_CAISSE, null),
+                    options);
+            Map<String, String> segments = decodeSegments(result.payload());
+            Map<String, String> additional = decodeSegments(segments.get("62"));
+            assertEquals("000", additional.get("11"));
         }
 
         @Test

@@ -6,7 +6,11 @@ import java.util.TreeMap;
 
 /**
  * Surcharges des données additionnelles (template 62).
- * Données libres : clés doivent être des chaînes de 2 caractères alphanumériques (spécification EMV).
+ * Données personnalisées : seules les clés {@code "05"} et {@code "11"} sont autorisées.
+ * <ul>
+ *   <li>{@code "05"} : référence transaction, max 25 caractères</li>
+ *   <li>{@code "11"} : canal marchand, longueur 3, valeurs autorisées {@code "000"} ou {@code "400"}</li>
+ * </ul>
  */
 public final class AdditionalDataOverrides {
 

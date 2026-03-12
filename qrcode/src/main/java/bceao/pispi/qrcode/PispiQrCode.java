@@ -148,6 +148,7 @@ public final class PispiQrCode {
             if (overrides.custom() != null && !overrides.custom().isEmpty()) {
                 for (Map.Entry<String, String> e : new java.util.TreeMap<>(overrides.custom()).entrySet()) {
                     validateSubTag(e.getKey());
+                    validateCustomValue(e.getKey(), e.getValue());
                     sb.append(EmvCodec.formatDataObject(e.getKey(), e.getValue()));
                 }
             }
@@ -159,10 +160,35 @@ public final class PispiQrCode {
         return value.trim();
     }
 
+    private static final Set<String> ALLOWED_CUSTOM_KEYS = Set.of("05", "11");
+    private static final int CUSTOM_TAG_05_MAX_LENGTH = 25;
+    private static final Set<String> CUSTOM_TAG_11_VALUES = Set.of("000", "400");
+
     private static void validateSubTag(String tag) {
         if (tag == null || !SUB_TAG.matcher(tag).matches()) {
             throw new IllegalArgumentException(
                     "Le sous-tag additional data \"" + tag + "\" doit contenir exactement 2 caractères alphanumériques.");
+        }
+    }
+
+    private static void validateCustomValue(String tag, String value) {
+        if (!ALLOWED_CUSTOM_KEYS.contains(tag)) {
+            throw new IllegalArgumentException(
+                    "Le sous-tag additional data personnalisé doit être \"05\" ou \"11\", reçu : \"" + tag + "\".");
+        }
+        if (value == null) {
+            throw new IllegalArgumentException("La valeur du sous-tag \"" + tag + "\" ne doit pas être nulle.");
+        }
+        if ("05".equals(tag)) {
+            if (value.length() > CUSTOM_TAG_05_MAX_LENGTH) {
+                throw new IllegalArgumentException(
+                        "Le sous-tag \"05\" ne doit pas dépasser " + CUSTOM_TAG_05_MAX_LENGTH + " caractères.");
+            }
+        } else if ("11".equals(tag)) {
+            if (value.length() != 3 || !CUSTOM_TAG_11_VALUES.contains(value)) {
+                throw new IllegalArgumentException(
+                        "Le sous-tag \"11\" doit avoir exactement 3 caractères et pour valeur \"000\" ou \"400\", reçu : \"" + value + "\".");
+            }
         }
     }
 
