@@ -15,21 +15,15 @@ import java.util.TreeMap;
 public final class AdditionalDataOverrides {
 
     private final String merchantChannel;
-    private final String purposeOfTransaction;
     private final Map<String, String> custom;
 
     private AdditionalDataOverrides(Builder b) {
         this.merchantChannel = b.merchantChannel;
-        this.purposeOfTransaction = b.purposeOfTransaction;
         this.custom = b.custom == null ? Map.of() : Collections.unmodifiableMap(new TreeMap<>(b.custom));
     }
 
     public String merchantChannel() {
         return merchantChannel;
-    }
-
-    public String purposeOfTransaction() {
-        return purposeOfTransaction;
     }
 
     public Map<String, String> custom() {
@@ -42,16 +36,10 @@ public final class AdditionalDataOverrides {
 
     public static final class Builder {
         private String merchantChannel;
-        private String purposeOfTransaction;
         private Map<String, String> custom;
 
         public Builder merchantChannel(String merchantChannel) {
             this.merchantChannel = merchantChannel;
-            return this;
-        }
-
-        public Builder purposeOfTransaction(String purposeOfTransaction) {
-            this.purposeOfTransaction = purposeOfTransaction;
             return this;
         }
 

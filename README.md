@@ -1,4 +1,4 @@
-# int.bceao.pispi:qrcode
+# io.github.pi-spi:qrcode
 
 SDK Java officiel pour générer et valider les payloads EMV des QR Codes PI-SPI (BCEAO). Ce sdk produit uniquement la chaîne payload conforme EMV, à utiliser avec une librairie QR de votre choix pour afficher votre QR code.
 
@@ -8,7 +8,7 @@ SDK Java officiel pour générer et valider les payloads EMV des QR Codes PI-SPI
 
 ```xml
 <dependency>
-    <groupId>int.bceao.pispi</groupId>
+    <groupId>io.github.pi-spi</groupId>
     <artifactId>qrcode</artifactId>
     <version>0.1.2</version>
 </dependency>
@@ -17,13 +17,13 @@ SDK Java officiel pour générer et valider les payloads EMV des QR Codes PI-SPI
 ### Gradle
 
 ```groovy
-implementation 'int.bceao.pispi:qrcode:0.1.2'
+implementation 'io.github.pi-spi:qrcode:0.1.2'
 ```
 
 Ou en Kotlin DSL :
 
 ```kotlin
-implementation("int.bceao.pispi:qrcode:0.1.2")
+implementation("io.github.pi-spi:qrcode:0.1.2")
 ```
 
 ## Usage rapide
@@ -92,11 +92,10 @@ Options pour la génération (surcharge des données additionnelles). Construit 
 Surcharges des données additionnelles (template 62). Construit via `AdditionalDataOverrides.builder()`.
 
 
-| Paramètre              | Type                 | Description                                    |
-| ---------------------- | -------------------- | ---------------------------------------------- |
-| `merchantChannel`      | `String`             | Canal marchand (tag 11)                        |
-| `purposeOfTransaction` | `String`             | Objet de la transaction                        |
-| `custom`               | `Map<String,String>` | Données libres ; clés autorisées : `05` (max 25 car.) et `11` (valeur `000` ou `400`). |
+| Paramètre         | Type                 | Description                                    |
+| ----------------- | -------------------- | ---------------------------------------------- |
+| `merchantChannel` | `String`             | Canal marchand (tag 11)                        |
+| `custom`          | `Map<String,String>` | Données libres ; clés autorisées : `05` (max 25 car.) et `11` (valeur `000` ou `400`). |
 
 
 ### `QrPayloadResult`
@@ -151,7 +150,6 @@ if (result.valid()) {
 
 ```java
 AdditionalDataOverrides overrides = AdditionalDataOverrides.builder()
-    .purposeOfTransaction("FACTURE")
     .putCustom("05", "REFERENCE_TX")   // max 25 caractères
     .putCustom("11", "400")            // "000" ou "400"
     .build();

@@ -142,9 +142,6 @@ public final class PispiQrCode {
         sb.append(EmvCodec.formatDataObject(DEFAULT_MERCHANT_CHANNEL_TAG, merchantChannelValue));
 
         if (overrides != null) {
-            if (overrides.purposeOfTransaction() != null && !overrides.purposeOfTransaction().isEmpty()) {
-                sb.append(EmvCodec.formatDataObject("12", overrides.purposeOfTransaction()));
-            }
             if (overrides.custom() != null && !overrides.custom().isEmpty()) {
                 for (Map.Entry<String, String> e : new java.util.TreeMap<>(overrides.custom()).entrySet()) {
                     validateSubTag(e.getKey());

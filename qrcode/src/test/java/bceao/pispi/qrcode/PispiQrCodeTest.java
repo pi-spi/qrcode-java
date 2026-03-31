@@ -211,7 +211,6 @@ class PispiQrCodeTest {
         @Test
         void autoriseLesDonneesAdditionnellesPersonnalisees() {
             AdditionalDataOverrides overrides = AdditionalDataOverrides.builder()
-                    .purposeOfTransaction("FACTURE")
                     .putCustom("05", "REFERENCE_TX_MAX_25_CHARS")
                     .putCustom("11", "400")
                     .build();
@@ -221,7 +220,6 @@ class PispiQrCodeTest {
                     options);
             Map<String, String> segments = decodeSegments(result.payload());
             Map<String, String> additional = decodeSegments(segments.get("62"));
-            assertEquals("FACTURE", additional.get("12"));
             assertEquals("REFERENCE_TX_MAX_25_CHARS", additional.get("05"));
             assertEquals("400", additional.get("11"));
         }
