@@ -1,6 +1,9 @@
 # io.github.pi-spi:qrcode
 
-SDK Java officiel pour générer et valider les payloads EMV des QR Codes PI-SPI (BCEAO). Ce sdk produit uniquement la chaîne payload conforme EMV, à utiliser avec une librairie QR de votre choix pour afficher votre QR code.
+SDK Java officiel pour les QR Codes PI-SPI (BCEAO)
+Générez et validez facilement les payloads EMV conformes à la norme EMV.
+Ce SDK facilite l’intégration des applications Java avec l’écosystème PI-SPI de la BCEAO.
+Utilisez ensuite la bibliothèque de génération de QR Code de votre choix pour afficher le QR code.
 
 ## Installation
 
@@ -25,6 +28,16 @@ Ou en Kotlin DSL :
 ```kotlin
 implementation("io.github.pi-spi:qrcode:0.1.2")
 ```
+
+### Depuis les sources (répertoire local Maven)
+
+À la racine du dépôt, avec JDK 21 et Maven 3.9+ :
+
+```bash
+mvn clean install
+```
+
+Cela installe `io.github.pi-spi:qrcode:0.1.2` dans `~/.m2/repository`. En cas d’erreur du type « Failed to install artifact » ou « No such file or directory » vers `.m2`, vérifiez les droits d’écriture sur le répertoire `~/.m2/repository`.
 
 ## Usage rapide
 
@@ -92,9 +105,9 @@ Options pour la génération (surcharge des données additionnelles). Construit 
 Surcharges des données additionnelles (template 62). Construit via `AdditionalDataOverrides.builder()`.
 
 
-| Paramètre         | Type                 | Description                                    |
-| ----------------- | -------------------- | ---------------------------------------------- |
-| `merchantChannel` | `String`             | Canal marchand (tag 11)                        |
+| Paramètre         | Type                 | Description                                                                            |
+| ----------------- | -------------------- | -------------------------------------------------------------------------------------- |
+| `merchantChannel` | `String`             | Canal marchand (tag 11)                                                                |
 | `custom`          | `Map<String,String>` | Données libres ; clés autorisées : `05` (max 25 car.) et `11` (valeur `000` ou `400`). |
 
 
