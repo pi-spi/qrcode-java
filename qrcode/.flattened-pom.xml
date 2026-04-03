@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>io.github.pi-spi</groupId>
+  <artifactId>bceao-pispi-qrcode</artifactId>
+  <version>1.0.2</version>
+  <name>BCEAO PI-SPI QR Code SDK</name>
+  <description>SDK Java pour générer et valider les payloads EMV des QR Codes PI-SPI (BCEAO). Zero runtime dependencies.</description>
+  <url>https://github.com/pi-spi/qrcode-java</url>
+  <licenses>
+    <license>
+      <name>MIT</name>
+      <url>https://opensource.org/licenses/MIT</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>BCEAO - PI-SPI</name>
+      <email>pi-spi@bceao.int</email>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:https://github.com/pi-spi/qrcode-java.git</connection>
+    <developerConnection>scm:git:https://github.com/pi-spi/qrcode-java.git</developerConnection>
+    <url>https://github.com/pi-spi/qrcode-java</url>
+  </scm>
+</project>

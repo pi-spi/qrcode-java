@@ -7,11 +7,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.pi-spi</groupId>
-    <artifactId>qrcode-java</artifactId>
-    <version>0.1.2</version>
+    <artifactId>bceao-pispi-qrcode-parent</artifactId>
+    <version>1.0.2</version>
     <packaging>pom</packaging>
 
-    <name>PI-SPI QR Code Java SDK</name>
+    <name>BCEAO PI-SPI QR Code Java SDK</name>
     <description>SDK Java officiel pour générer et valider les payloads EMV des QR Codes PI-SPI (BCEAO). Thématiques : BCEAO, PI-SPI, EMV, UEMOA, QR code, paiement, payload.</description>
     <url>https://github.com/pi-spi/qrcode-java</url>
 
@@ -49,6 +49,9 @@
         <maven.compiler.release>21</maven.compiler.release>
         <!-- Clé GPG de signature des artifacts (empreinte complète) — surcharger avec -Dgpg.keyname=... si besoin -->
         <gpg.keyname>998B5BD7266C5D7B0B3C477CB3AD8BD366E42900</gpg.keyname>
+        <!-- Par défaut le POM parent n'est PAS publié sur Central.
+             Le module enfant (qrcode/pom.xml) surcharge cette propriété à false. -->
+        <central.skipPublishing>true</central.skipPublishing>
     </properties>
 
     <profiles>
@@ -110,7 +113,9 @@
                         </configuration>
                     </plugin>
 
-                    <!-- Central Publishing Plugin -->
+                    <!-- Central Publishing Plugin
+                         Le parent est exclu via ${central.skipPublishing}=true (défini dans <properties>).
+                         Le module enfant surcharge à false dans son propre pom.xml. -->
                     <plugin>
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
@@ -118,7 +123,9 @@
                         <extensions>true</extensions>
                         <configuration>
                             <publishingServerId>central</publishingServerId>
+                            <deploymentName>BCEAO PI-SPI QR Code SDK ${project.version}</deploymentName>
                             <autoPublish>true</autoPublish>
+                            <skipPublishing>${central.skipPublishing}</skipPublishing>
                         </configuration>
                     </plugin>
                 </plugins>

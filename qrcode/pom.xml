@@ -6,16 +6,18 @@
 
     <parent>
         <groupId>io.github.pi-spi</groupId>
-        <artifactId>qrcode-java</artifactId>
-        <version>0.1.2</version>
+        <artifactId>bceao-pispi-qrcode-parent</artifactId>
+        <version>1.0.2</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>qrcode</artifactId>
+    <groupId>io.github.pi-spi</groupId>
+    <artifactId>bceao-pispi-qrcode</artifactId>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
-    <name>PI-SPI QR Code SDK</name>
-    <description>SDK Java pour générer la payload EMV des QR Codes PI-SPI (BCEAO). Zero runtime dependencies.</description>
+    <name>BCEAO PI-SPI QR Code SDK</name>
+    <description>SDK Java pour générer et valider les payloads EMV des QR Codes PI-SPI (BCEAO). Zero runtime dependencies.</description>
     <url>https://github.com/pi-spi/qrcode-java</url>
     <licenses>
         <license>
@@ -39,6 +41,8 @@
 
     <properties>
         <junit.version>5.10.2</junit.version>
+        <!-- Autorise la publication de CE module sur Central (surcharge le parent qui a true) -->
+        <central.skipPublishing>false</central.skipPublishing>
     </properties>
 
     <dependencies>
@@ -52,6 +56,33 @@
 
     <build>
         <plugins>
+            <!-- Résout le POM parent avant le deploy : le .pom publié sur Central n'a pas de référence <parent>
+                 → le module bceao-pispi-qrcode-parent n'a pas besoin d'être publié sur Central -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <flattenMode>ossrh</flattenMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

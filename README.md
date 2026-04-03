@@ -1,4 +1,4 @@
-# io.github.pi-spi:qrcode
+# io.github.pi-spi:bceao-pispi-qrcode
 
 SDK Java officiel pour les QR Codes PI-SPI (BCEAO)
 Générez et validez facilement les payloads EMV conformes à la norme EMV.
@@ -12,21 +12,21 @@ Utilisez ensuite la bibliothèque de génération de QR Code de votre choix pour
 ```xml
 <dependency>
     <groupId>io.github.pi-spi</groupId>
-    <artifactId>qrcode</artifactId>
-    <version>0.1.2</version>
+    <artifactId>bceao-pispi-qrcode</artifactId>
+    <version>1.0.2</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation 'io.github.pi-spi:qrcode:0.1.2'
+implementation 'io.github.pi-spi:bceao-pispi-qrcode:1.0.2'
 ```
 
 Ou en Kotlin DSL :
 
 ```kotlin
-implementation("io.github.pi-spi:qrcode:0.1.2")
+implementation("io.github.pi-spi:bceao-pispi-qrcode:1.0.2")
 ```
 
 ### Depuis les sources (répertoire local Maven)
@@ -37,7 +37,7 @@ implementation("io.github.pi-spi:qrcode:0.1.2")
 mvn clean install
 ```
 
-Cela installe `io.github.pi-spi:qrcode:0.1.2` dans `~/.m2/repository`. En cas d’erreur du type « Failed to install artifact » ou « No such file or directory » vers `.m2`, vérifiez les droits d’écriture sur le répertoire `~/.m2/repository`.
+Cela installe `io.github.pi-spi:bceao-pispi-qrcode:1.0.2` dans `~/.m2/repository`. En cas d’erreur du type « Failed to install artifact » ou « No such file or directory » vers `.m2`, vérifiez les droits d’écriture sur le répertoire `~/.m2/repository`.
 
 ## Usage rapide
 
@@ -186,7 +186,7 @@ QrPayloadResult result = PispiQrCode.createQrPayload(input, options);
 
 ## Structure du projet
 
-Le projet est organisé en un module Maven unique (`qrcode`) contenant le SDK. Le POM parent gère la version Java et la configuration commune.
+Le projet est organisé en un module Maven unique (`qrcode`) contenant le SDK. Le POM parent (`bceao-pispi-qrcode-parent`) gère la version Java et la configuration commune.
 
 ```
 qrcode-java/                    # Racine du projet
